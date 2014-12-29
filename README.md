@@ -1,29 +1,22 @@
 # hpess/chef
-This builds on the hpess/base image and installs chef-client for surface level configuration
+This builds on the hpess/base image and installs chef-client for surface level configuration.
+
+Some people believe that chef and docker are mutually exclusive, i personally disagree.  I like to have 95% of what is required to run the application in the container, ready to go, and then use chef for minor surface level configurance in each instance.
 
 ## Chef-client
-Chef-Client is pre installed and configured as a supervisor process, running on a 120 second interval.
+At the moment I'm only supporting local-mode, that is, running cookbooks and recipes which are physically present in the /chef volume.
 
-The general idea is that chef-client will only provide surface level configuration of the container, no actual package installations.
+The general idea is that you can either mount a /chef volume containing your cookbooks:
+```
+docker run -it --rm -v ./your/cookbooks:/chef -e="chef_run_list=cookbook" hpess/chef
+```
+Or you can create your own Dockerfile which copies in the cookbooks:
+```
+FROM hpess/chef
+COPY chef/* /chef
+ENV chef_run_list cookbook
+```
 
-In order for chef-client to run OK and register itself on the chef server, you need to provide it with a client.rb:
-```
-chef_server_url "https://your-chef-server"
-ssl_verify_mode :verify_none
-```
-and a validation.pem, which you can get from the chef server itself.
+To be clear, the purpose of this container is **not** to be run on its own, its built to form the foundations of other containers.
 
-So, your Dockerfile could look like this:
-```
-FROM hpess/base:latest
-ADD client.rb /etc/chef/client.rb
-ADD validation.pem /etc/chef/validation.pem
-```
-Or, your fig.yml could look like this:
-```
-chef:
-  image: hpess/base
-  volumes:
-   - ./client:/etc/etc
-```
-where ./client contains a client.rb and validation.pem
+I use it in a number of other applications (chef out hpess/dockerproxy) for example, which is a squid/dnsmasq container but using chef to configure the applications as per the users environmental variables.
