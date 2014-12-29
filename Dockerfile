@@ -12,6 +12,4 @@ RUN mkdir -p /etc/chef && \
 VOLUME ["/chef"]
 WORKDIR /chef
 
-COPY start-chef.sh /usr/local/bin/start-chef.sh
-ENTRYPOINT ["/bin/sh"]
-CMD ["/usr/local/bin/start-chef.sh"]
+COPY 00chef.sh /preboot/ 

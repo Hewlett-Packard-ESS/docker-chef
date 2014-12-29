@@ -28,12 +28,3 @@ else
     echo "WARNING: chef_interval was 0, therefore chef-client will not run periodically!"
   fi
 fi
-
-echo "Starting Supervisor..."
-supervisord -c /etc/supervisord.conf &
-SPID="$!"
-echo "Supervisor PID: $SPID"
-
-trap "kill $SPID >/dev/null 2>&1 && wait $SPID" exit INT TERM
-
-wait $SPID
