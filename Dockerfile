@@ -12,4 +12,4 @@ RUN mkdir -p /etc/chef && \
 VOLUME ["/chef"]
 WORKDIR /chef
 
-COPY 00chef.sh /preboot/ 
+COPY preboot/* /preboot/ 
