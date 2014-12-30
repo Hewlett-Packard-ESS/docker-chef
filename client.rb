@@ -1,4 +1,4 @@
-log_level              :info
+log_level              :error
 log_location           STDOUT
 
 Ohai::Config[:disabled_plugins] = [
