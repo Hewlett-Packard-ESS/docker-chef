@@ -15,4 +15,7 @@ RUN mkdir -p /etc/chef && \
 VOLUME ["/chef"]
 WORKDIR /chef
 
+COPY client.rb /etc/chef/client.rb
+
+# Add our preboot scripts
 COPY preboot/* /preboot/ 
