@@ -11,10 +11,6 @@ RUN mkdir -p /etc/chef && \
     mkdir -p /chef/environments && \
     mkdir -p /chef/data_bags
 
-# If we're running in local mode, you should mount this directory
-VOLUME ["/chef"]
-WORKDIR /chef
-
 COPY client.rb /etc/chef/client.rb
 
 # Add our preboot scripts

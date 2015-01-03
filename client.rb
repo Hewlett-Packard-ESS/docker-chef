@@ -1,5 +1,6 @@
 log_level              :error
 log_location           STDOUT
+chef_repo_path         '/chef'
 
 Ohai::Config[:disabled_plugins] = [
   'c',
