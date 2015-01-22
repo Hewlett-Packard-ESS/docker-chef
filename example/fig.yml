@@ -3,6 +3,7 @@ example:
   volumes:
     - ./chef:/chef
   environment:
+    DEBUG: 'true'
     chef_local: 'true'
     chef_node_name: 'example-chef'
     chef_run_list: 'test'
