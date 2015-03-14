@@ -2,7 +2,11 @@ FROM hpess/base:latest
 MAINTAINER Karl Stoney <karl.stoney@hp.com>
 
 # Install chef-client
-RUN curl -s -L https://www.opscode.com/chef/install.sh | bash
+RUN curl -s -L https://www.opscode.com/chef/install.sh | bash && \
+    rm -rf /opt/chef/embedded/apps/chef/spec && \
+    rm -rf /opt/chef/embedded/apps/chef/kitchen-tests && \
+    rm -rf /opt/chef/embedded/apps/chef/distro
+    
 
 # Setup the directories that are required
 RUN mkdir -p /etc/chef && \
