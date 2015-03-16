@@ -17,5 +17,7 @@ RUN mkdir -p /etc/chef && \
 
 COPY client.rb /etc/chef/client.rb
 
+ENV HPESS_ENV chef
+
 # Add our preboot scripts
 COPY preboot/* /preboot/ 
