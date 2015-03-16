@@ -1,4 +1,4 @@
-FROM hpess/base:latest
+FROM hpess/base:master
 MAINTAINER Karl Stoney <karl.stoney@hp.com>
 
 # Install chef-client
