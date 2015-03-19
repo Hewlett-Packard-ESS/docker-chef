@@ -1,5 +1,5 @@
 example:
-  image: hpess/chef
+  image: hpess/chef:master
   volumes:
     - ./chef:/chef
   environment:

@@ -1,1 +1,1 @@
-sudo docker build -t hpess/chef:latest . 
+docker build -t hpess/chef:master . 
