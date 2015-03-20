@@ -20,13 +20,13 @@ echo "node_name \"$chef_node_name\"" >> /etc/chef/client.rb
 
 if [ ! "$chef_run_list" == "" ]; then
   if [ "$chef_local" == "true" ]; then
-    printf " => Please wait... Performing surface level configuration with chef-zero... "
+    info "Please wait... Performing surface level configuration with chef-zero... "
     if [ "$DEBUG" == "true" ]; then
       $chef_command
     else
       $chef_command >/dev/null
     fi
-    echo "Done!"
+    info "Chef complete!"
   fi
 
   if [ "$chef_interval" -gt "0" ]; then
